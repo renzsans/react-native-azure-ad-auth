@@ -2,9 +2,9 @@
 
 A React Native module for Azure AD authentication endpoint. This module implements Azure AD authentication using pure React-Native using typescript.
 
-This is an inspired copy of [shedaltd/react-native-azure-ad-2](https://github.com/shedaltd/react-native-azure-ad-2) with some issue fixes and a logout feature.
+This is an inspired copy of [shedaltd/react-native-azure-ad-2](https://github.com/shedaltd/react-native-azure-ad-2) with some issues resolved and a logout feature.
 
-This module is developed to help developers to integrated Microsoft V2 endpoint into their React-native app in a painless way.
+This module should help developers integrate Microsoft V2 endpoint into their React-native app in a simple way.
 
 * Components:
     * AzureAdInstance
