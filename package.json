@@ -1,6 +1,6 @@
 {
   "name": "react-native-azure-ad-auth",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A React Native module for Azure AD authentication endpoint. This module implements Azure AD authentication using pure React-Native using typescript.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

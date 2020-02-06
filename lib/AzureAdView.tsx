@@ -38,15 +38,15 @@ export default class AzureAdView extends Component<AzureAdViewProps, AzureAdView
             cancelled: false
         }
 
-        this._handleTokenRequest = this._handleTokenRequest.bind(this);
-        this._renderLoadingView = this._renderLoadingView.bind(this);
+        this.handleTokenRequest = this.handleTokenRequest.bind(this);
+        this.renderLoadingView = this.renderLoadingView.bind(this);
     }
 
-    _handleTokenRequest(e: { url: string }): any {
+    handleTokenRequest(e: { url: string }): any {
 
         const { needLogout, azureAdInstance } = this.props;
 
-        if (needLogout && e.url == azureAdInstance.credentials.redirect_uri) {
+        if (needLogout && e.url.includes('/logoutsession')) {
             this.setState({ visible: false });
             azureAdInstance.clearToken();
 
@@ -84,18 +84,12 @@ export default class AzureAdView extends Component<AzureAdViewProps, AzureAdView
         }
     }
 
-    _renderLoadingView(): JSX.Element {
+    renderLoadingView(): JSX.Element {
         const { loadingView, loadingStyle, loadingMessage } = this.props;
         return (loadingView === undefined)
             ? (
                 <View
-                    style={[loadingStyle, styles.loadingView,
-                        {
-                            flex: 1,
-                            alignSelf: 'stretch',
-                            width: Dimensions.get('window').width,
-                            height: Dimensions.get('window').height
-                        }]}>
+                    style={[loadingStyle, styles.loadingView, styles.centered]}>
                     <Text>{loadingMessage}</Text>
                 </View>
             ) : (
@@ -104,8 +98,6 @@ export default class AzureAdView extends Component<AzureAdViewProps, AzureAdView
     }
 
     render() {
-        let js = `document.getElementsByTagName('body')[0].style.height = '${Dimensions.get('window').height}px';`;
-
         const source = (this.props.needLogout)
             ? this.auth.getAuthLogoutUrl()
             : this.auth.getAuthLoginUrl();
@@ -115,23 +107,18 @@ export default class AzureAdView extends Component<AzureAdViewProps, AzureAdView
                 ? (
                     <WebView
                         automaticallyAdjustContentInsets={true}
-                        style={[this.props.loadingStyle, styles.webView, {
-                            flex: 1,
-                            alignSelf: 'stretch',
-                            width: Dimensions.get('window').width,
-                            height: Dimensions.get('window').height
-                        }]}
+                        style={[this.props.loadingStyle, styles.webView, styles.centered]}
                         source={{ uri: source }}
                         javaScriptEnabled={true}
                         domStorageEnabled={true}
                         decelerationRate="normal"
-                        onNavigationStateChange={this._handleTokenRequest}
+                        onNavigationStateChange={this.handleTokenRequest}
                         onShouldStartLoadWithRequest={(e) => { return true }}
                         startInLoadingState={true}
-                        injectedJavaScript={js}
                         scalesPageToFit={true}
+                        incognito={false}
                     />
-                ) : this._renderLoadingView()
+                ) : this.renderLoadingView()
         );
     }
 }
@@ -139,6 +126,12 @@ export default class AzureAdView extends Component<AzureAdViewProps, AzureAdView
 const styles = StyleSheet.create({
     webView: {
         marginTop: 50
+    },
+    centered: {
+        flex: 1,
+        alignSelf: 'stretch',
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height
     },
     loadingView: {
         alignItems: 'center',

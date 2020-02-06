@@ -10,7 +10,7 @@ $ npm install
 Then open `App.tsx` file and update the credentials with your registered Microsoft application credentials.
 ```javascript
 var credentials = {
-    authority: 'https://login.microsoftonline.us/YOUR_TENANT_ID',
+    authority: 'https://login.microsoftonline.com/YOUR_TENANT_ID',
     client_id: 'YOUR_CLIENT_ID',
     client_secret: 'YOUR_CLIENT_SECRET',
     redirect_uri: 'YOUR_REDIRECT_URI',

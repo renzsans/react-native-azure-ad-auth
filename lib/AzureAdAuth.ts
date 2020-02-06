@@ -30,11 +30,7 @@ export default class AzureAdAuth {
     }
 
     getAuthLogoutUrl() {
-        const { authority, redirect_uri } = this.config;
-
-        return authority +
-            "/oauth2/v2.0/logout" +
-            "?post_logout_redirect_uri=" + redirect_uri;
+        return this.config.authority + "/oauth2/v2.0/logout";
     }
 
     async _request(params: any): Promise<any> {
