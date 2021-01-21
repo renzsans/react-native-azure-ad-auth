@@ -34,7 +34,7 @@
   "dependencies": {
     "buffer": "^5.0.0",
     "query-string": "^6.10.1",
-    "react-native-webview": "^5.8.2",
+    "react-native-webview": "^11.0.0",
     "tslib": "^1.10.0",
     "url": "^0.11.0",
     "uuid": "^2.0.3"
