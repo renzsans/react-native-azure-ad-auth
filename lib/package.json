@@ -29,7 +29,7 @@
     "@types/react-native": "0.57.60",
     "@types/uuid": "^3.4.7",
     "react": "^16.8.3",
-    "react-native": "^0.59.9"
+    "react-native": "^0.62.3"
   },
   "dependencies": {
     "buffer": "^5.0.0",
